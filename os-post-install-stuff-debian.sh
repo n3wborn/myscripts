@@ -35,3 +35,10 @@ oh-my-install() {
     echo '-Y' | sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 }
+
+main() {
+    apt-update
+    apt-upgrade
+    install-softwares
+    oh-my-install
+}
