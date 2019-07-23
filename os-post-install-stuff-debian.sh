@@ -13,32 +13,32 @@ apt-upgrade() {
 }
 
 install-softwares() {
-    # TODO: replace every software with a variable containing all of them
-    apt -y install  \
-        vim         \
-        git         \
-        zsh         \
+    #TODO: software names should be listed in a variable
+    apt -y install vim git zsh neovim wget curl screen xclip
         # oh-my-zsh will be needed too
-        neovim      \
         #python support only available in debian unstable
         #python-neovim   \
         #python3-neovim  \
-        wget        \
-        curl        \
-        screen      \
-        xclip
-    }
+}
 
 oh-my-install() {
     # https://github.com/robbyrussell/oh-my-zsh
     # NOTE: I should install it for a normal user too
     echo '-Y' | sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+cat << 'EOF' >> ~/.zshrc
+    plugins=(
+        git
+    )
+EOF
 
+    chsh -s $(which zsh)
 }
 
 main() {
-    apt-update
-    apt-upgrade
-    install-softwares
+    apt-update &&           \
+    apt-upgrade &&          \
+    install-softwares &&    \
     oh-my-install
 }
+
+main
