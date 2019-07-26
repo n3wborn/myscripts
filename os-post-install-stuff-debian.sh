@@ -33,11 +33,24 @@ EOF
     chsh -s $(which zsh)
 }
 
+create-user() {
+    echo '[*] in create-user function : user = "${1}"'
+    useradd -m '"${1}"'
+    echo '"${1}":"${1}"' | chpasswd
+}
+
+
 main() {
-    apt-update &&           \
-    apt-upgrade &&          \
-    install-softwares &&    \
-    oh-my-install
+    #variables
+    user=stf                    \
+    #to be made as root
+    apt-update &&               \
+    apt-upgrade &&              \
+    install-softwares &&        \
+    oh-my-install &&            \
+    create-user "${user}" &&    \
+    #switch to normal user
+    su "${user}"
 }
 
 main
