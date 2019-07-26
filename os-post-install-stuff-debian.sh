@@ -14,7 +14,7 @@ apt-upgrade() {
 
 install-softwares() {
     #TODO: software names should be listed in a variable
-    apt -y install vim git zsh neovim wget curl screen xclip
+    apt -y install vim git zsh neovim wget curl screen xclip sudo
         #neovim python support only available in debian unstable
         #python-neovim   \
         #python3-neovim  \
