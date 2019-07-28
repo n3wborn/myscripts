@@ -34,11 +34,10 @@ EOF
 }
 
 create-user() {
-    echo '[*] in create-user function : user = "${1}"'
-    useradd -m '"${1}"'
-    echo '"${1}":"${1}"' | chpasswd
+    echo '[*] in create-user function : user = '"${1}"
+    useradd -m "${1}" && echo '[*] user '"${1} " 'created'
+    echo "${1}":"${1}" | chpasswd && echo '[*] password '"${1} "'created'
 }
-
 
 main() {
     #variables
